@@ -21,4 +21,3 @@ module "kubernetes_cluster" {
 #     "subnet-071c8c8c1dd4c5732"
 #   ]
 # }
-
