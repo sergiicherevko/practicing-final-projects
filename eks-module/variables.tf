@@ -1,4 +1,4 @@
-variable "cluster_name" {
+variable "project_name" {
   type = string
 }
 
@@ -10,6 +10,6 @@ variable "subnets_list" {
   type = list(string)
 }
 
-variable "role_name" {
+variable "environment" {
   type = string
 }
