@@ -1,4 +1,4 @@
-name: Demo Workflow
+name: Terraform Deployment Workflow
 
 # Controls when the workflow will run
 on:
@@ -15,11 +15,14 @@ jobs:
   # This workflow contains a single job called "build"
   demo-task:
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
+        with:
+            repo: terraform-infra-bob-24a
+            branch: feature/test
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v5.0.0
@@ -27,17 +30,12 @@ jobs:
           aws-region: us-east-1
           role-to-assume: arn:aws:iam::834786370659:role/github-actions-runner-tf-iam-role-dev
           role-session-name: login-session-by-github-actions
-          
-      # # Runs a single command using the runners shell
-      # - name: Run a one-line script
-      #   run: echo Hello, world!
 
-      # Runs a set of commands using the runners shell
+      # - uses: hashicorp/setup-terraform@v4
+
       - name: Run a multi-line script
+        working-directory: root-module/
         run: |
-          aws sts get-caller-identity
-          aws s3 mb s3://marsel-20251010
-          aws s3 ls
-          pwd
-          ls
-          tree
+          terraform init
+          terraform plan -input=false -var-file=dev.tfvars 
+          terraform apply -auto-approve -input=false -var-file=dev.tfvars
