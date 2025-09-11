@@ -9,6 +9,7 @@ on:
 
 permissions:
   id-token: write   # This is required for OIDC based Role login
+  contents: read    # This is required for actions/checkout
 
 jobs:
   # This workflow contains a single job called "build"
