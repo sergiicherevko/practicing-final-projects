@@ -15,7 +15,7 @@ jobs:
   # This workflow contains a single job called "build"
   tf-deploy:
     # The type of runner that the job will run on
-    environment: dev
+    environment: staging
     runs-on: ubuntu-22.04
 
     steps:
