@@ -15,20 +15,18 @@ jobs:
   # This workflow contains a single job called "build"
   tf-deploy:
     # The type of runner that the job will run on
+    environment: dev
     runs-on: ubuntu-22.04
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
-        with:
-            repo: terraform-infra-bob-24a
-            branch: feature/test
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v5.0.0
         with:
           aws-region: us-east-1
-          role-to-assume: arn:aws:iam::485669235563:role/github-actions-runner-tf-iam-role-staging
+          role-to-assume: ${{ vars.IAM_ROLE }}
           role-session-name: login-session-by-github-actions
 
       # - uses: hashicorp/setup-terraform@v4
@@ -37,5 +35,5 @@ jobs:
         working-directory: root-module/
         run: |
           terraform init
-          terraform plan -input=false -var-file=staging.tfvars 
-          terraform apply -auto-approve -input=false -var-file=staging.tfvars
+          terraform plan -input=false -var-file=${{ vars.ENVIRONMENT_STAGE }}.tfvars 
+          terraform apply -auto-approve -input=false -var-file=${{ vars.ENVIRONMENT_STAGE }}.tfvars
