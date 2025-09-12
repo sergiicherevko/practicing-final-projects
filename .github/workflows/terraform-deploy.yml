@@ -15,7 +15,7 @@ jobs:
   # This workflow contains a single job called "build"
   tf-deploy:
     # The type of runner that the job will run on
-    environment: staging
+    environment: ${{ (github.ref == 'refs/heads/main' && 'production') || (github.ref == 'refs/heads/staging' && 'staging') || 'dev' }}
     runs-on: ubuntu-22.04
 
     steps:
