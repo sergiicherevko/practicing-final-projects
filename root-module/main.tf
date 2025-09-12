@@ -10,4 +10,5 @@ module "main_vpc" {
   source            = "../vpc-module"
   cidr_block_prefix = "10.7"
   project_name      = var.root_project_name
+  vpc_region        = var.root_vpc_region
 }
