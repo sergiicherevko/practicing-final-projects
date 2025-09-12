@@ -28,7 +28,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v5.0.0
         with:
           aws-region: us-east-1
-          role-to-assume: arn:aws:iam::834786370659:role/github-actions-runner-tf-iam-role-dev
+          role-to-assume: arn:aws:iam::485669235563:role/github-actions-runner-tf-iam-role-staging
           role-session-name: login-session-by-github-actions
 
       # - uses: hashicorp/setup-terraform@v4
@@ -37,5 +37,5 @@ jobs:
         working-directory: root-module/
         run: |
           terraform init
-          terraform plan -input=false -var-file=dev.tfvars 
-          terraform apply -auto-approve -input=false -var-file=dev.tfvars
+          terraform plan -input=false -var-file=staging.tfvars 
+          terraform apply -auto-approve -input=false -var-file=staging.tfvars
