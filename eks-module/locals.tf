@@ -1,6 +1,8 @@
 locals {
-  clustername = "${var.project_name}-cluster-${var.environment}"
-  rolename    = "${var.project_name}-cluster-role-${var.environment}"
+  clustername     = "${var.project_name}-cluster-${var.environment}"
+  rolename        = "${var.project_name}-cluster-role-${var.environment}"
+  node_group_name = "${var.project_name}-cluster-worker-nodes-${var.environment}"
+  node_group_role = "${var.project_name}-cluster-workers-role-${var.environment}"
 
   root_account    = "4325423255454"
   log_group       = "${var.project_name}-logs-${var.environment}"
