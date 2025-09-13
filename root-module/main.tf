@@ -4,6 +4,7 @@ module "kubernetes_cluster" {
   environment  = var.root_environment
   k8s_version  = var.root_k8s_version
   subnets_list = module.main_vpc.subnet_ids
+  ec2_types    = ["t3.medium","t2.medium"]
 }
 
 module "main_vpc" {

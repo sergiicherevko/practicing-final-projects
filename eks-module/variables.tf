@@ -13,3 +13,7 @@ variable "subnets_list" {
 variable "environment" {
   type = string
 }
+
+variable "ec2_types" {
+  type = list
+}
