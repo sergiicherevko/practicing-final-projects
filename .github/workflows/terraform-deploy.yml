@@ -26,7 +26,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v5.0.0
         with:
           aws-region: us-east-1
-          role-to-assume: arn:aws:iam::300920592534:role/github-actions-runner-iam-role-dev
+          role-to-assume: arn:aws:iam::300920592534:role/github-actions-runner-iam-role-fp-practice-dev
           role-session-name: login-session-by-github-actions
 
       # - uses: hashicorp/setup-terraform@v4
