@@ -14,7 +14,7 @@ permissions:
 jobs:
   # This workflow contains a single job called "build"
   tf-deploy:
-    # The type of runner that the job will run on
+    name: Terraform – Assume Role & Deploy
     environment: ${{ (github.ref == 'refs/heads/main' && 'production') || (github.ref == 'refs/heads/staging' && 'staging') || 'dev' }}
     runs-on: ubuntu-22.04
 
@@ -26,14 +26,14 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v5.0.0
         with:
           aws-region: us-east-1
-          role-to-assume: ${{ vars.IAM_ROLE }}
+          role-to-assume: arn:aws:iam::300920592534:role/github-actions-runner-iam-role-dev
           role-session-name: login-session-by-github-actions
 
-      # - uses: hashicorp/setup-terraform@v4.
+      # - uses: hashicorp/setup-terraform@v4
 
       - name: Run a multi-line script
         working-directory: root-module/
         run: |
-          terraform init -backend-config="bucket=${{ vars.TF_STATE_BUCKET }}"
-          terraform plan -input=false -var-file=${{ vars.ENVIRONMENT_STAGE }}.tfvars 
-          terraform apply -auto-approve -input=false -var-file=${{ vars.ENVIRONMENT_STAGE }}.tfvars
+          aws sts get-caller-identity
+          pwd
+          ls

@@ -4,7 +4,7 @@ locals {
   node_group_name = "${var.project_name}-cluster-worker-nodes-${var.environment}"
   node_group_role = "${var.project_name}-cluster-workers-role-${var.environment}"
 
-  root_account    = "4325423255454"
+  root_account    = "300920592534"
   log_group       = "${var.project_name}-logs-${var.environment}"
   db_name         = "${var.project_name}-db-${var.environment}"
   cache_name      = "${var.project_name}-cache-${var.environment}"
