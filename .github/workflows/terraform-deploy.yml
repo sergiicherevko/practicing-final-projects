@@ -30,7 +30,7 @@ jobs:
           role-to-assume: ${{ vars.IAM_Role }}
           role-session-name: login-session-by-github-actions
 
-      - uses: hashicorp/setup-terraform@v4
+      - uses: hashicorp/setup-terraform@v3
 
       - name: Run a multi-line script
         working-directory: root-module/
