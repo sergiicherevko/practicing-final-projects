@@ -32,16 +32,16 @@ jobs:
 
       - uses: hashicorp/setup-terraform@v3
 
-      # - name: Run a multi-line script
-      #   working-directory: root-module/
-      #   run: |
-      #     terraform init -backend-config="bucket=${{ vars.TF_STATE_BUCKET }}"
-      #     terraform plan -input=false -var-file=${{ vars.ENVIRONMENT_STAGE }}.tfvars 
-      #     terraform apply -auto-approve -input=false -var-file=${{ vars.ENVIRONMENT_STAGE }}.tfvars
-
-      - name: Terraform Destroy
+      - name: Run a multi-line script
         working-directory: root-module/
         run: |
           terraform init -backend-config="bucket=${{ vars.TF_STATE_BUCKET }}"
-          terraform plan -destroy -input=false -var-file=${{ vars.ENVIRONMENT_STAGE }}.tfvars
-          terraform destroy -auto-approve -input=false -var-file=${{ vars.ENVIRONMENT_STAGE }}.tfvars
+          terraform plan -input=false -var-file=${{ vars.ENVIRONMENT_STAGE }}.tfvars 
+          terraform apply -auto-approve -input=false -var-file=${{ vars.ENVIRONMENT_STAGE }}.tfvars
+
+      # - name: Terraform Destroy
+      #   working-directory: root-module/
+      #   run: |
+      #     terraform init -backend-config="bucket=${{ vars.TF_STATE_BUCKET }}"
+      #     terraform plan -destroy -input=false -var-file=${{ vars.ENVIRONMENT_STAGE }}.tfvars
+      #     terraform destroy -auto-approve -input=false -var-file=${{ vars.ENVIRONMENT_STAGE }}.tfvars
